@@ -1,1 +1,42 @@
 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Поздравление</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="card">
+
+    <div class="message">
+        <h1>💗 С Днём Рождения 💗</h1>
+        <p>
+            Пусть в твоей жизни будет больше тепла, нежности и улыбок.
+            Пусть каждый день будет наполнен радостью и любовью.
+        </p>
+    </div>
+
+    <div class="video-frame">
+        <video autoplay muted loop playsinline>
+            <source src="video.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <button class="music-btn" onclick="playMusic()">🎵 Включить музыку</button>
+
+</div>
+
+<audio id="music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function playMusic() {
+    document.getElementById('music').play();
+}
+</script>
+
+</body>
+</html>
