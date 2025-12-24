@@ -38,5 +38,27 @@ function playMusic() {
 }
 </script>
 
+    <button class="music-btn" onclick="startMedia()">▶ Включить видео</button>
+
+<video id="video" playsinline>
+    <source src="video.mp4" type="video/mp4">
+</video>
+
+<audio id="music">
+    <source src="music.m4a" type="audio/mp4">
+</audio>
+
+<script>
+function startMedia() {
+    const video = document.getElementById('video');
+    const music = document.getElementById('music');
+
+    video.muted = false;
+    video.play();
+    music.play();
+}
+</script>
+
+
 </body>
 </html>
