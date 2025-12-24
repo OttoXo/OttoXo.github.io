@@ -28,9 +28,6 @@
 
 </div>
 
-<audio id="music" loop>
-    <source src="music.mp3" type="audio/mpeg">
-</audio>
 
 <script>
 function playMusic() {
@@ -48,16 +45,6 @@ function playMusic() {
     <source src="music.m4a" type="audio/mp4">
 </audio>
 
-<script>
-function startMedia() {
-    const video = document.getElementById('video');
-    const music = document.getElementById('music');
-
-    video.muted = false;
-    video.play();
-    music.play();
-}
-</script>
 <div id="hearts"></div>
 
 <script>
@@ -72,8 +59,6 @@ setInterval(() => {
 }, 400);
 </script>
 
-<button class="music-btn" onclick="startVideo()">▶ Включить видео</button>
-
 <div class="video-frame">
     <video id="video" playsinline>
         <source src="video.mp4" type="video/mp4">
@@ -84,7 +69,7 @@ setInterval(() => {
     <source src="music.m4a" type="audio/mp4">
 </audio>
 <script>
-function startVideo() {
+function startMedia() {
     const video = document.getElementById('video');
     const music = document.getElementById('music');
 
