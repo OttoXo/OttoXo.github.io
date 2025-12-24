@@ -83,6 +83,20 @@ setInterval(() => {
 <audio id="music" loop>
     <source src="music.m4a" type="audio/mp4">
 </audio>
+<script>
+function startVideo() {
+    const video = document.getElementById('video');
+    const music = document.getElementById('music');
+
+    video.muted = false;
+    video.play();
+
+    // когда видео закончится — включаем музыку
+    video.onended = () => {
+        music.play();
+    };
+}
+</script>
 
 </body>
 </html>
