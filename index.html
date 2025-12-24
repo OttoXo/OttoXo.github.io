@@ -72,6 +72,17 @@ setInterval(() => {
 }, 400);
 </script>
 
+<button class="music-btn" onclick="startVideo()">▶ Включить видео</button>
+
+<div class="video-frame">
+    <video id="video" playsinline>
+        <source src="video.mp4" type="video/mp4">
+    </video>
+</div>
+
+<audio id="music" loop>
+    <source src="music.m4a" type="audio/mp4">
+</audio>
 
 </body>
 </html>
