@@ -163,15 +163,21 @@ function startVideo() {
 
     video.play();
 
-    video.onended = () => {
-        // запускаем музыку
-        music.play();
+video.onended = () => {
+    // запускаем музыку
+    music.play();
 
-        // меняем видео на зацикленное
-        video.src = 'video_loop.mp4';
-        video.loop = true;
-        video.play();
-    };
+    // переключаемся на второе видео
+    video.src = 'video_loop.mp4';
+    video.loop = true;
+
+    // 🔇 отключаем звук у второго видео
+    video.muted = true;
+    video.volume = 0;
+
+    video.play();
+};
+
 }
 
 // Сердечки
