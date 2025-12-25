@@ -6,6 +6,7 @@
 
 <style>
     /* PRELOADER */
+/* PRELOADER */
 #loader {
     position: fixed;
     inset: 0;
@@ -13,24 +14,46 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     z-index: 9999;
+    transition: opacity 0.8s ease;
 }
 
-.loader-box {
-    text-align: center;
-    color: #d94c7b;
-    font-size: 18px;
+#loader.hide {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .loader-heart {
-    font-size: 48px;
-    animation: pulse 1.2s infinite;
+    font-size: 80px;
+    animation: heartZoom 1.8s ease-in-out forwards;
 }
 
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
+.loader-text {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #d94c7b;
 }
+
+@keyframes heartZoom {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    30% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    70% {
+        transform: scale(6);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(8);
+        opacity: 0;
+    }
+}
+
 
 body {
     margin: 0;
@@ -151,11 +174,10 @@ body {
 
 <body>
 <div id="loader">
-    <div class="loader-box">
-        <div class="loader-heart">💗</div>
-        <p>Загружаем поздравление…</p>
-    </div>
+    <div class="loader-heart">💗</div>
+    <div class="loader-text">Загружаем поздравление…</div>
 </div>
+
 
 <div class="card">
 
@@ -223,36 +245,30 @@ setInterval(() => {
 
     setTimeout(() => heart.remove(), 8000);
 }, 400);
-    <script>
-const video = document.getElementById('video');
-const music = document.getElementById('music');
+  <script>
 const loader = document.getElementById('loader');
 const playBtn = document.getElementById('playBtn');
 
-let loaded = 0;
-const TOTAL = 3;
-
-// функция проверки
-function checkReady() {
-    loaded++;
-    if (loaded >= TOTAL) {
-        loader.style.display = 'none';
-        playBtn.disabled = false;
-    }
-}
-
-// блокируем кнопку
+// блокируем кнопку до конца загрузки
 playBtn.disabled = true;
 
-// ждём загрузку файлов
-video.addEventListener('canplaythrough', checkReady, { once: true });
-music.addEventListener('canplaythrough', checkReady, { once: true });
+// ЖДЁМ, КОГДА HTML ТОЧНО ГОТОВ
+document.addEventListener('DOMContentLoaded', () => {
 
-// второе видео — подгружаем заранее
-const preloadVideo = document.createElement('video');
-preloadVideo.src = 'video_loop.mp4';
-preloadVideo.addEventListener('canplaythrough', checkReady, { once: true });
+    // минимальная "загрузка" (надёжно)
+    setTimeout(() => {
+        loader.classList.add('hide');
+
+        // убираем loader из DOM
+        setTimeout(() => {
+            loader.style.display = 'none';
+            playBtn.disabled = false;
+        }, 800);
+
+    }, 1800); // 1.8 сек — идеально под анимацию сердца
+});
 </script>
+
 
 </script>
 
