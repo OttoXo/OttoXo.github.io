@@ -49,12 +49,13 @@ body {
     line-height: 1.55;
 }
 
-/* Видео */
+/* Видео (СКРЫТО ИЗНАЧАЛЬНО) */
 .video-frame {
     border: 4px solid #f3a6c8;
     border-radius: 26px;
     overflow: hidden;
     margin-bottom: 20px;
+    display: none;
 }
 
 .video-frame video {
@@ -126,20 +127,22 @@ body {
 <div class="card">
 
     <div class="message">
-        <h1>💗 С Днём Рождения 💗</h1>
+        <h1>С Днём Рождения 💗</h1>
         <p>
             Пусть в твоей жизни будет больше тепла, нежности и улыбок.
             Пусть каждый день будет наполнен радостью и любовью.
         </p>
     </div>
 
-    <div class="video-frame">
+    <div class="video-frame" id="videoFrame">
         <video id="video" playsinline>
-            <source src="video.mp4" type="video/mp4">
+            <source src="video_start.mp4" type="video/mp4">
         </video>
     </div>
 
-    <button class="play-btn" onclick="startVideo()">▶ Включить видео</button>
+    <button class="play-btn" id="playBtn" onclick="startVideo()">
+        ▶ Включить видео
+    </button>
 
 </div>
 
@@ -151,11 +154,23 @@ body {
 function startVideo() {
     const video = document.getElementById('video');
     const music = document.getElementById('music');
+    const frame = document.getElementById('videoFrame');
+    const btn = document.getElementById('playBtn');
+
+    // показать видео, убрать кнопку
+    frame.style.display = 'block';
+    btn.style.display = 'none';
 
     video.play();
 
     video.onended = () => {
+        // запускаем музыку
         music.play();
+
+        // меняем видео на зацикленное
+        video.src = 'video_loop.mp4';
+        video.loop = true;
+        video.play();
     };
 }
 
