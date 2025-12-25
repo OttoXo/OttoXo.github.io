@@ -5,6 +5,33 @@
 <title>Поздравление 💗</title>
 
 <style>
+    /* PRELOADER */
+#loader {
+    position: fixed;
+    inset: 0;
+    background: #fff7f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.loader-box {
+    text-align: center;
+    color: #d94c7b;
+    font-size: 18px;
+}
+
+.loader-heart {
+    font-size: 48px;
+    animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
 body {
     margin: 0;
     font-family: "Segoe UI", sans-serif;
@@ -196,6 +223,37 @@ setInterval(() => {
 
     setTimeout(() => heart.remove(), 8000);
 }, 400);
+    <script>
+const video = document.getElementById('video');
+const music = document.getElementById('music');
+const loader = document.getElementById('loader');
+const playBtn = document.getElementById('playBtn');
+
+let loaded = 0;
+const TOTAL = 3;
+
+// функция проверки
+function checkReady() {
+    loaded++;
+    if (loaded >= TOTAL) {
+        loader.style.display = 'none';
+        playBtn.disabled = false;
+    }
+}
+
+// блокируем кнопку
+playBtn.disabled = true;
+
+// ждём загрузку файлов
+video.addEventListener('canplaythrough', checkReady, { once: true });
+music.addEventListener('canplaythrough', checkReady, { once: true });
+
+// второе видео — подгружаем заранее
+const preloadVideo = document.createElement('video');
+preloadVideo.src = 'video_loop.mp4';
+preloadVideo.addEventListener('canplaythrough', checkReady, { once: true });
+</script>
+
 </script>
 
 </body>
